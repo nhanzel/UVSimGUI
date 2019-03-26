@@ -30,6 +30,7 @@ public:
 	int divide(int, int);
 	//end of arithmetic functions
 
+	//getters and setters
 	int getInstr();
 
 	void setInstr(int);
@@ -45,6 +46,7 @@ public:
 	int getAccu();
 
 	void setAccu(int);
+	//end of getters and setters
 
 
 	~ALU();

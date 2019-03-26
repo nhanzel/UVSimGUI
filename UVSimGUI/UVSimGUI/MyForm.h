@@ -79,9 +79,11 @@ namespace UVSimGUI {
 		//declare any variables here that are needed
 		/// <summary>
 		int numLines = 0;
+		int myInput = 0;
 		std::string* recentLine;
 		ALU* myALU;
-		/// </summary>
+	private: System::Windows::Forms::Button^  InputB;
+			 /// </summary>
 		System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
@@ -110,6 +112,7 @@ namespace UVSimGUI {
 			this->RunL = (gcnew System::Windows::Forms::Label());
 			this->OutInputTB = (gcnew System::Windows::Forms::TextBox());
 			this->OutLabelTB = (gcnew System::Windows::Forms::TextBox());
+			this->InputB = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// TitleL
@@ -293,9 +296,9 @@ namespace UVSimGUI {
 			// 
 			// OutInputTB
 			// 
-			this->OutInputTB->Location = System::Drawing::Point(603, 86);
+			this->OutInputTB->Location = System::Drawing::Point(578, 86);
 			this->OutInputTB->Name = L"OutInputTB";
-			this->OutInputTB->Size = System::Drawing::Size(128, 20);
+			this->OutInputTB->Size = System::Drawing::Size(87, 20);
 			this->OutInputTB->TabIndex = 18;
 			// 
 			// OutLabelTB
@@ -303,8 +306,20 @@ namespace UVSimGUI {
 			this->OutLabelTB->Location = System::Drawing::Point(442, 86);
 			this->OutLabelTB->Name = L"OutLabelTB";
 			this->OutLabelTB->ReadOnly = true;
-			this->OutLabelTB->Size = System::Drawing::Size(155, 20);
+			this->OutLabelTB->Size = System::Drawing::Size(130, 20);
 			this->OutLabelTB->TabIndex = 19;
+			// 
+			// InputB
+			// 
+			this->InputB->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->InputB->Location = System::Drawing::Point(671, 86);
+			this->InputB->Name = L"InputB";
+			this->InputB->Size = System::Drawing::Size(83, 20);
+			this->InputB->TabIndex = 20;
+			this->InputB->Text = L"Submit";
+			this->InputB->UseVisualStyleBackColor = true;
+			this->InputB->Click += gcnew System::EventHandler(this, &MyForm::InputB_Click);
 			// 
 			// MyForm
 			// 
@@ -312,6 +327,7 @@ namespace UVSimGUI {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::Lime;
 			this->ClientSize = System::Drawing::Size(877, 419);
+			this->Controls->Add(this->InputB);
 			this->Controls->Add(this->OutLabelTB);
 			this->Controls->Add(this->OutInputTB);
 			this->Controls->Add(this->RunL);
@@ -362,13 +378,14 @@ namespace UVSimGUI {
 
 					//run through all of the possible instructions
 					if (myALU->getInstr() == 10) {
+						OutLabelTB->Text = "Input an integer:";
 						myALU->memory[myALU->getLocation()] = read();
 					}
 					else if (myALU->getInstr() == 11) {
 						write(myALU->memory[myALU->getLocation()], myALU->getLocation());
 					}
 					else if (myALU->getInstr() == 20) {
-						myALU->setAccu(myALU->memory[myALU->getLocation()]);
+						myALU->setAccu((myALU->memory[myALU->getLocation()]);
 					}
 					else if (myALU->getInstr() == 21) {
 						myALU->memory[myALU->getLocation()] = myALU->getAccu();
@@ -403,11 +420,22 @@ namespace UVSimGUI {
 
 					//halt instruction
 					else if (myALU->getInstr() == 43) {
-						instCount++;
 						break;
 					}
 			}
 		}
 	}
 };
+
+	int read() {
+		OutLabelTB->Text = "Input an integer:";
+	}
+
+	void write(int value, int location) {
+
+	}
+
+	private: System::Void InputB_Click(System::Object^  sender, System::EventArgs^  e) {
+		myInput = int::Parse(OutInputTB->Text);
+	}
 };
