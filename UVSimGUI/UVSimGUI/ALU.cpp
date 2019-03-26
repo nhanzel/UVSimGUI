@@ -45,4 +45,36 @@ int ALU::divide(int accumulator, int value) {
 	return i;
 }
 
+int ALU::getInstr() {
+	return instruction;
+}
+
+void ALU::setInstr(int _i) {
+	instruction = _i;
+}
+
+int ALU::getCount() {
+	return count;
+}
+
+void ALU::setCount(int _c) {
+	count = _c;
+}
+
+int ALU::getLocation() {
+	return location;
+}
+
+void ALU::setLocation(int _l) {
+	location = _l;
+}
+
+int ALU::getAccu() {
+	return accumulator;
+}
+
+void ALU::setAccu(int _a) {
+	accumulator = _a;
+}
+
 ALU::~ALU() {}
