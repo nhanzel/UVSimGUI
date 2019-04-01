@@ -78,11 +78,8 @@ namespace UVSimGUI {
 	private:
 		//declare any variables here that are needed
 		/// <summary>
-		int numLines = 0;
-		int myInput = 0;
-		std::string* recentLine;
-		std::string* subStr;
 		ALU* myALU;
+		int myInput = 0;
 	private: System::Windows::Forms::Button^  InputB;
 			 /// </summary>
 			 System::ComponentModel::Container ^components;
@@ -361,14 +358,25 @@ namespace UVSimGUI {
 
 	private: System::Void InputTB_KeyPress(System::Object^  sender, System::Windows::Forms::KeyPressEventArgs^  e) {
 		if (e->KeyChar == (char)13) {
-			//this piece turns the System string from the From to an std string
+			int numLines = 0;
+			char* recentLine;
+			char* subStr = "fuck";
+			std::string numStr;
+			//this piece turns the System string from the Form to an std string
 			System::String^ managed = InputTB->Lines[numLines];
-			recentLine = &(msclr::interop::marshal_as<std::string>(managed));
+			IntPtr ptrToNativeString = System::Runtime::InteropServices::Marshal::StringToHGlobalAnsi(managed);
+			recentLine = static_cast<char*>(ptrToNativeString.ToPointer());
 
 			//checks to see if the user has entered the termination key
-			if (*recentLine != "-99999") {
-				subStr = &recentLine->substr(1, 4);
-				int subInt = stoi(*subStr);
+			if (recentLine[0] != '-') {
+				subStr[0] = recentLine[1];
+				subStr[1] = recentLine[2];
+				subStr[2] = recentLine[3];
+				subStr[3] = recentLine[4];
+				for (int i=0;i<4;i++) {
+					numStr.push_back(subStr[i]);
+				}
+				int subInt = stoi(numStr);
 				myALU->updateIns(5, numLines);
 				numLines++;
 			}
