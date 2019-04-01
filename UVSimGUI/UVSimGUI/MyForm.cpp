@@ -12,4 +12,4 @@ int main(array <String^> ^ args) {
 	UVSimGUI::MyForm form;
 	Application::Run(%form);
 	return 0;
-}
+};

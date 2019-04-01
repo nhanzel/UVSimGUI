@@ -14,11 +14,11 @@ private:
 
 public:
 
-	std::string memory[1000] = {};
+	int memory[1000] = {};
 
 	ALU();
 
-	void updateIns(std::string, int);
+	void updateIns(int, int);
 
 	//arithmetic functions
 	int add(int, int);
@@ -48,8 +48,12 @@ public:
 	void setAccu(int);
 	//end of getters and setters
 
+	//reading and writing
+	int read();
+
+	System::String^ write(int, int);
+	//end of reading and writing
 
 	~ALU();
-
 };
 

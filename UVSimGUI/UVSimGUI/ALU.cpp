@@ -11,7 +11,7 @@ ALU::ALU() {
 
 }
 
-void ALU::updateIns(std::string i, int lineNum) {
+void ALU::updateIns(int i, int lineNum) {
 	memory[lineNum] = i;
 }
 
@@ -75,6 +75,14 @@ int ALU::getAccu() {
 
 void ALU::setAccu(int _a) {
 	accumulator = _a;
+}
+
+int ALU::read() {
+	return 5;
+}
+
+System::String^ ALU::write(int location, int value) {
+	return "The value stored at location " + location + " is " + value;
 }
 
 ALU::~ALU() {}
