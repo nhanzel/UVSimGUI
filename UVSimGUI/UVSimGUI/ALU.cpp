@@ -45,6 +45,24 @@ int ALU::divide(int accumulator, int value) {
 	return i;
 }
 
+int ALU::exponent(int accumulator, int value) {
+	int ans = 1;
+	for (int i = 0; i < value; i++) {
+		ans = multiply(ans, accumulator);
+	}
+	return ans;
+}
+
+int ALU::remainder(int accumulator, int value) {
+	int i = 1;
+	int prod = 0;
+	while (prod <= accumulator) {
+		prod = value * i;
+		i++;
+	}
+	return accumulator - (prod - value);
+}
+
 int ALU::getInstr() {
 	return instruction;
 }

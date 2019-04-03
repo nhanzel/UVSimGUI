@@ -28,6 +28,10 @@ public:
 	int multiply(int, int);
 
 	int divide(int, int);
+
+	int exponent(int, int);
+
+	int remainder(int, int);
 	//end of arithmetic functions
 
 	//getters and setters
