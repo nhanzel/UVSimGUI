@@ -16,11 +16,21 @@ void ALU::updateIns(int i, int lineNum) {
 }
 
 int ALU::add(int accumulator, int value) {
-	return accumulator + value;
+	if (value == 0) {
+		return accumulator;
+	}
+	else {
+		return add(accumulator^value, (accumulator & value) << 1);
+	}
 }
 
 int ALU::subtract(int accumulator, int value) {
-	return add(accumulator, (0 - value));
+	if (value == 0) {
+		return accumulator;
+	}
+	else {
+		return subtract(accumulator^value, (~accumulator & value) << 1);
+	}
 }
 
 int ALU::multiply(int accumulator, int value) {
