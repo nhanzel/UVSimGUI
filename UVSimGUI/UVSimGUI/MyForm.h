@@ -360,7 +360,7 @@ namespace UVSimGUI {
 		if (e->KeyChar == (char)13) {
 			int numLines = 0;
 			char* recentLine;
-			char* subStr = "fuck";
+			char* subStr = "0000";
 			std::string numStr;
 			//this piece turns the System string from the Form to an std string
 			System::String^ managed = InputTB->Lines[numLines];
@@ -377,7 +377,7 @@ namespace UVSimGUI {
 					numStr.push_back(subStr[i]);
 				}
 				int subInt = stoi(numStr);
-				myALU->updateIns(5, numLines);
+				myALU->updateIns(subInt, numLines);
 				numLines++;
 			}
 			else {
