@@ -415,6 +415,12 @@ namespace UVSimGUI {
 					else if (myALU->getInstr() == 33) {
 						myALU->setAccu(myALU->multiply(myALU->getAccu(), myALU->memory[myALU->getLocation()]));
 					}
+					else if (myALU->getInstr() == 34) {
+						myALU->setAccu(myALU->exponent(myALU->getAccu(), myALU->memory[myALU->getLocation()]));
+					}
+					else if (myALU->getInstr() == 35) {
+						myALU->setAccu(myALU->remainder(myALU->getAccu(), myALU->memory[myALU->getLocation()]));
+					}
 					else if (myALU->getInstr() == 40) {
 						i = myALU->getLocation() - 1;
 					}

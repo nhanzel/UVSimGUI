@@ -16,11 +16,21 @@ void ALU::updateIns(int i, int lineNum) {
 }
 
 int ALU::add(int accumulator, int value) {
-	return accumulator + value;
+	if (value == 0) {
+		return accumulator;
+	}
+	else {
+		return add(accumulator^value, (accumulator & value) << 1);
+	}
 }
 
 int ALU::subtract(int accumulator, int value) {
-	return add(accumulator, (0 - value));
+	if (value == 0) {
+		return accumulator;
+	}
+	else {
+		return subtract(accumulator^value, (~accumulator & value) << 1);
+	}
 }
 
 int ALU::multiply(int accumulator, int value) {
@@ -43,6 +53,24 @@ int ALU::divide(int accumulator, int value) {
 		i++;
 	}
 	return i;
+}
+
+int ALU::exponent(int accumulator, int value) {
+	int ans = 1;
+	for (int i = 0; i < value; i++) {
+		ans = multiply(ans, accumulator);
+	}
+	return ans;
+}
+
+int ALU::remainder(int accumulator, int value) {
+	int i = 1;
+	int prod = 0;
+	while (prod <= accumulator) {
+		prod = value * i;
+		i++;
+	}
+	return accumulator - (prod - value);
 }
 
 int ALU::getInstr() {
