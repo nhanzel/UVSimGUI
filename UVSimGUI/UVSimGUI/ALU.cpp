@@ -11,10 +11,6 @@ ALU::ALU() {
 
 }
 
-void ALU::updateIns(int i, int lineNum) {
-	memory[lineNum] = i;
-}
-
 int ALU::add(int accumulator, int value) {
 	if (value == 0) {
 		return accumulator;

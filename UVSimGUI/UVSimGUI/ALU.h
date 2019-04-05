@@ -14,11 +14,7 @@ private:
 
 public:
 
-	int memory[1000] = {};
-
 	ALU();
-
-	void updateIns(int, int);
 
 	//arithmetic functions
 	int add(int, int);
