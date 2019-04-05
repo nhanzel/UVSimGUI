@@ -112,9 +112,9 @@ namespace UVSimGUI {
 				 this->OutLabelTB = (gcnew System::Windows::Forms::TextBox());
 				 this->InputB = (gcnew System::Windows::Forms::Button());
 				 this->SuspendLayout();
-				 // 
+				 //
 				 // TitleL
-				 // 
+				 //
 				 this->TitleL->AutoSize = true;
 				 this->TitleL->BackColor = System::Drawing::Color::Transparent;
 				 this->TitleL->Font = (gcnew System::Drawing::Font(L"Sitka Small", 24, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
@@ -124,18 +124,18 @@ namespace UVSimGUI {
 				 this->TitleL->Size = System::Drawing::Size(135, 48);
 				 this->TitleL->TabIndex = 0;
 				 this->TitleL->Text = L"UVSim";
-				 // 
+				 //
 				 // MemoryTB
-				 // 
+				 //
 				 this->MemoryTB->Location = System::Drawing::Point(442, 116);
 				 this->MemoryTB->Multiline = true;
 				 this->MemoryTB->Name = L"MemoryTB";
 				 this->MemoryTB->ReadOnly = true;
 				 this->MemoryTB->Size = System::Drawing::Size(423, 291);
 				 this->MemoryTB->TabIndex = 1;
-				 // 
+				 //
 				 // MemoryL
-				 // 
+				 //
 				 this->MemoryL->AutoSize = true;
 				 this->MemoryL->BackColor = System::Drawing::Color::Transparent;
 				 this->MemoryL->Font = (gcnew System::Drawing::Font(L"Sitka Small", 15.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
@@ -145,33 +145,33 @@ namespace UVSimGUI {
 				 this->MemoryL->Size = System::Drawing::Size(105, 31);
 				 this->MemoryL->TabIndex = 2;
 				 this->MemoryL->Text = L"Memory";
-				 // 
+				 //
 				 // AccumTB
-				 // 
+				 //
 				 this->AccumTB->Location = System::Drawing::Point(266, 97);
 				 this->AccumTB->Name = L"AccumTB";
 				 this->AccumTB->ReadOnly = true;
 				 this->AccumTB->Size = System::Drawing::Size(147, 20);
 				 this->AccumTB->TabIndex = 3;
-				 // 
+				 //
 				 // InRegTB
-				 // 
+				 //
 				 this->InRegTB->Location = System::Drawing::Point(266, 167);
 				 this->InRegTB->Name = L"InRegTB";
 				 this->InRegTB->ReadOnly = true;
 				 this->InRegTB->Size = System::Drawing::Size(147, 20);
 				 this->InRegTB->TabIndex = 4;
-				 // 
+				 //
 				 // InCouTB
-				 // 
+				 //
 				 this->InCouTB->Location = System::Drawing::Point(266, 238);
 				 this->InCouTB->Name = L"InCouTB";
 				 this->InCouTB->ReadOnly = true;
 				 this->InCouTB->Size = System::Drawing::Size(147, 20);
 				 this->InCouTB->TabIndex = 5;
-				 // 
+				 //
 				 // AccumL
-				 // 
+				 //
 				 this->AccumL->AutoSize = true;
 				 this->AccumL->BackColor = System::Drawing::Color::Transparent;
 				 this->AccumL->Font = (gcnew System::Drawing::Font(L"Sitka Small", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
@@ -181,9 +181,9 @@ namespace UVSimGUI {
 				 this->AccumL->Size = System::Drawing::Size(97, 19);
 				 this->AccumL->TabIndex = 6;
 				 this->AccumL->Text = L"Accumulator";
-				 // 
+				 //
 				 // InRegL
-				 // 
+				 //
 				 this->InRegL->AutoSize = true;
 				 this->InRegL->BackColor = System::Drawing::Color::Transparent;
 				 this->InRegL->Font = (gcnew System::Drawing::Font(L"Sitka Small", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
@@ -193,9 +193,9 @@ namespace UVSimGUI {
 				 this->InRegL->Size = System::Drawing::Size(151, 19);
 				 this->InRegL->TabIndex = 7;
 				 this->InRegL->Text = L"Instruction Register";
-				 // 
+				 //
 				 // InCouL
-				 // 
+				 //
 				 this->InCouL->AutoSize = true;
 				 this->InCouL->BackColor = System::Drawing::Color::Transparent;
 				 this->InCouL->Font = (gcnew System::Drawing::Font(L"Sitka Small", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
@@ -205,25 +205,25 @@ namespace UVSimGUI {
 				 this->InCouL->Size = System::Drawing::Size(148, 19);
 				 this->InCouL->TabIndex = 8;
 				 this->InCouL->Text = L"Instruction Counter";
-				 // 
+				 //
 				 // OpCodTB
-				 // 
+				 //
 				 this->OpCodTB->Location = System::Drawing::Point(266, 304);
 				 this->OpCodTB->Name = L"OpCodTB";
 				 this->OpCodTB->ReadOnly = true;
 				 this->OpCodTB->Size = System::Drawing::Size(147, 20);
 				 this->OpCodTB->TabIndex = 9;
-				 // 
+				 //
 				 // OprndTB
-				 // 
+				 //
 				 this->OprndTB->Location = System::Drawing::Point(266, 370);
 				 this->OprndTB->Name = L"OprndTB";
 				 this->OprndTB->ReadOnly = true;
 				 this->OprndTB->Size = System::Drawing::Size(147, 20);
 				 this->OprndTB->TabIndex = 10;
-				 // 
+				 //
 				 // OpCodL
-				 // 
+				 //
 				 this->OpCodL->AutoSize = true;
 				 this->OpCodL->BackColor = System::Drawing::Color::Transparent;
 				 this->OpCodL->Font = (gcnew System::Drawing::Font(L"Sitka Small", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
@@ -233,9 +233,9 @@ namespace UVSimGUI {
 				 this->OpCodL->Size = System::Drawing::Size(117, 19);
 				 this->OpCodL->TabIndex = 11;
 				 this->OpCodL->Text = L"Operation Code";
-				 // 
+				 //
 				 // OprndL
-				 // 
+				 //
 				 this->OprndL->AutoSize = true;
 				 this->OprndL->BackColor = System::Drawing::Color::Transparent;
 				 this->OprndL->Font = (gcnew System::Drawing::Font(L"Sitka Small", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
@@ -245,9 +245,9 @@ namespace UVSimGUI {
 				 this->OprndL->Size = System::Drawing::Size(69, 19);
 				 this->OprndL->TabIndex = 12;
 				 this->OprndL->Text = L"Operand";
-				 // 
+				 //
 				 // InputL
-				 // 
+				 //
 				 this->InputL->AutoSize = true;
 				 this->InputL->BackColor = System::Drawing::Color::Transparent;
 				 this->InputL->Font = (gcnew System::Drawing::Font(L"Sitka Small", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
@@ -257,9 +257,9 @@ namespace UVSimGUI {
 				 this->InputL->Size = System::Drawing::Size(48, 19);
 				 this->InputL->TabIndex = 13;
 				 this->InputL->Text = L"Input";
-				 // 
+				 //
 				 // InputTB
-				 // 
+				 //
 				 this->InputTB->AcceptsReturn = true;
 				 this->InputTB->Location = System::Drawing::Point(13, 97);
 				 this->InputTB->Multiline = true;
@@ -267,9 +267,9 @@ namespace UVSimGUI {
 				 this->InputTB->Size = System::Drawing::Size(216, 227);
 				 this->InputTB->TabIndex = 14;
 				 this->InputTB->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::InputTB_KeyPress);
-				 // 
+				 //
 				 // ClearB
-				 // 
+				 //
 				 this->ClearB->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 					 static_cast<System::Byte>(0)));
 				 this->ClearB->Location = System::Drawing::Point(13, 370);
@@ -278,9 +278,9 @@ namespace UVSimGUI {
 				 this->ClearB->TabIndex = 16;
 				 this->ClearB->Text = L"CLEAR";
 				 this->ClearB->UseVisualStyleBackColor = true;
-				 // 
+				 //
 				 // RunL
-				 // 
+				 //
 				 this->RunL->AutoSize = true;
 				 this->RunL->BackColor = System::Drawing::Color::Transparent;
 				 this->RunL->Font = (gcnew System::Drawing::Font(L"Sitka Small", 9.75F, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)),
@@ -291,24 +291,24 @@ namespace UVSimGUI {
 				 this->RunL->TabIndex = 17;
 				 this->RunL->Text = L"Input -99999 to \r\nrun your program";
 				 this->RunL->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
-				 // 
+				 //
 				 // OutInputTB
-				 // 
+				 //
 				 this->OutInputTB->Location = System::Drawing::Point(578, 86);
 				 this->OutInputTB->Name = L"OutInputTB";
 				 this->OutInputTB->Size = System::Drawing::Size(87, 20);
 				 this->OutInputTB->TabIndex = 18;
-				 // 
+				 //
 				 // OutLabelTB
-				 // 
+				 //
 				 this->OutLabelTB->Location = System::Drawing::Point(442, 86);
 				 this->OutLabelTB->Name = L"OutLabelTB";
 				 this->OutLabelTB->ReadOnly = true;
 				 this->OutLabelTB->Size = System::Drawing::Size(130, 20);
 				 this->OutLabelTB->TabIndex = 19;
-				 // 
+				 //
 				 // InputB
-				 // 
+				 //
 				 this->InputB->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 					 static_cast<System::Byte>(0)));
 				 this->InputB->Location = System::Drawing::Point(671, 86);
@@ -318,9 +318,9 @@ namespace UVSimGUI {
 				 this->InputB->Text = L"Submit";
 				 this->InputB->UseVisualStyleBackColor = true;
 				 this->InputB->Click += gcnew System::EventHandler(this, &MyForm::InputB_Click);
-				 // 
+				 //
 				 // MyForm
-				 // 
+				 //
 				 this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 				 this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 				 this->BackColor = System::Drawing::Color::Lime;
@@ -377,7 +377,7 @@ namespace UVSimGUI {
 					numStr.push_back(subStr[i]);
 				}
 				int subInt = stoi(numStr);
-				myALU->updateIns(subInt, numLines);
+				myALU->updateIns(5, numLines);
 				numLines++;
 			}
 			else {
