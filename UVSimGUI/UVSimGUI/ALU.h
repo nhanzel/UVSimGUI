@@ -48,11 +48,8 @@ public:
 	void setAccu(int);
 	//end of getters and setters
 
-	//reading and writing
-	int read();
-
+	//writing
 	System::String^ write(int, int);
-	//end of reading and writing
 
 	~ALU();
 };

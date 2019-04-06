@@ -101,12 +101,9 @@ void ALU::setAccu(int _a) {
 	accumulator = _a;
 }
 
-int ALU::read() {
-	return 5;
-}
-
 System::String^ ALU::write(int value, int location) {
-	return "The value stored at location " + location + " is " + value;
+	//\r\n is a newline character
+	return "The value stored at location " + location + " is " + value + "\r\n" + "\r\n";
 }
 
 ALU::~ALU() {}

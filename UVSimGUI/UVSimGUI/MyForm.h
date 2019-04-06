@@ -73,7 +73,7 @@ namespace UVSimGUI {
 
 	private: System::Windows::Forms::TextBox^  InputTB;
 
-	private: System::Windows::Forms::Button^  ClearB;
+
 	private: System::Windows::Forms::Label^  RunL;
 
 	private: System::Windows::Forms::TextBox^  OutInputTB;
@@ -125,7 +125,6 @@ namespace UVSimGUI {
 				 this->OprndL = (gcnew System::Windows::Forms::Label());
 				 this->InputL = (gcnew System::Windows::Forms::Label());
 				 this->InputTB = (gcnew System::Windows::Forms::TextBox());
-				 this->ClearB = (gcnew System::Windows::Forms::Button());
 				 this->RunL = (gcnew System::Windows::Forms::Label());
 				 this->OutInputTB = (gcnew System::Windows::Forms::TextBox());
 				 this->OutLabelTB = (gcnew System::Windows::Forms::TextBox());
@@ -139,7 +138,7 @@ namespace UVSimGUI {
 				 this->TitleL->BackColor = System::Drawing::Color::Transparent;
 				 this->TitleL->Font = (gcnew System::Drawing::Font(L"Sitka Small", 24, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 					 static_cast<System::Byte>(0)));
-				 this->TitleL->Location = System::Drawing::Point(0, 25);
+				 this->TitleL->Location = System::Drawing::Point(5, 9);
 				 this->TitleL->Name = L"TitleL";
 				 this->TitleL->Size = System::Drawing::Size(135, 48);
 				 this->TitleL->TabIndex = 0;
@@ -147,10 +146,13 @@ namespace UVSimGUI {
 				 // 
 				 // MemoryTB
 				 // 
+				 this->MemoryTB->Font = (gcnew System::Drawing::Font(L"Consolas", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+					 static_cast<System::Byte>(0)));
 				 this->MemoryTB->Location = System::Drawing::Point(442, 116);
 				 this->MemoryTB->Multiline = true;
 				 this->MemoryTB->Name = L"MemoryTB";
 				 this->MemoryTB->ReadOnly = true;
+				 this->MemoryTB->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
 				 this->MemoryTB->Size = System::Drawing::Size(423, 291);
 				 this->MemoryTB->TabIndex = 1;
 				 // 
@@ -168,26 +170,32 @@ namespace UVSimGUI {
 				 // 
 				 // AccumTB
 				 // 
+				 this->AccumTB->Font = (gcnew System::Drawing::Font(L"Consolas", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+					 static_cast<System::Byte>(0)));
 				 this->AccumTB->Location = System::Drawing::Point(266, 97);
 				 this->AccumTB->Name = L"AccumTB";
 				 this->AccumTB->ReadOnly = true;
-				 this->AccumTB->Size = System::Drawing::Size(147, 20);
+				 this->AccumTB->Size = System::Drawing::Size(147, 23);
 				 this->AccumTB->TabIndex = 3;
 				 // 
 				 // InRegTB
 				 // 
+				 this->InRegTB->Font = (gcnew System::Drawing::Font(L"Consolas", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+					 static_cast<System::Byte>(0)));
 				 this->InRegTB->Location = System::Drawing::Point(266, 167);
 				 this->InRegTB->Name = L"InRegTB";
 				 this->InRegTB->ReadOnly = true;
-				 this->InRegTB->Size = System::Drawing::Size(147, 20);
+				 this->InRegTB->Size = System::Drawing::Size(147, 23);
 				 this->InRegTB->TabIndex = 4;
 				 // 
 				 // InCouTB
 				 // 
+				 this->InCouTB->Font = (gcnew System::Drawing::Font(L"Consolas", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+					 static_cast<System::Byte>(0)));
 				 this->InCouTB->Location = System::Drawing::Point(266, 238);
 				 this->InCouTB->Name = L"InCouTB";
 				 this->InCouTB->ReadOnly = true;
-				 this->InCouTB->Size = System::Drawing::Size(147, 20);
+				 this->InCouTB->Size = System::Drawing::Size(147, 23);
 				 this->InCouTB->TabIndex = 5;
 				 // 
 				 // AccumL
@@ -228,18 +236,22 @@ namespace UVSimGUI {
 				 // 
 				 // OpCodTB
 				 // 
+				 this->OpCodTB->Font = (gcnew System::Drawing::Font(L"Consolas", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+					 static_cast<System::Byte>(0)));
 				 this->OpCodTB->Location = System::Drawing::Point(266, 304);
 				 this->OpCodTB->Name = L"OpCodTB";
 				 this->OpCodTB->ReadOnly = true;
-				 this->OpCodTB->Size = System::Drawing::Size(147, 20);
+				 this->OpCodTB->Size = System::Drawing::Size(147, 23);
 				 this->OpCodTB->TabIndex = 9;
 				 // 
 				 // OprndTB
 				 // 
+				 this->OprndTB->Font = (gcnew System::Drawing::Font(L"Consolas", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+					 static_cast<System::Byte>(0)));
 				 this->OprndTB->Location = System::Drawing::Point(266, 370);
 				 this->OprndTB->Name = L"OprndTB";
 				 this->OprndTB->ReadOnly = true;
-				 this->OprndTB->Size = System::Drawing::Size(147, 20);
+				 this->OprndTB->Size = System::Drawing::Size(147, 23);
 				 this->OprndTB->TabIndex = 10;
 				 // 
 				 // OpCodL
@@ -282,6 +294,8 @@ namespace UVSimGUI {
 				 // 
 				 this->InputTB->AcceptsReturn = true;
 				 this->InputTB->AllowDrop = true;
+				 this->InputTB->Font = (gcnew System::Drawing::Font(L"Consolas", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+					 static_cast<System::Byte>(0)));
 				 this->InputTB->Location = System::Drawing::Point(13, 97);
 				 this->InputTB->Multiline = true;
 				 this->InputTB->Name = L"InputTB";
@@ -289,24 +303,13 @@ namespace UVSimGUI {
 				 this->InputTB->TabIndex = 14;
 				 this->InputTB->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::InputTB_KeyPress);
 				 // 
-				 // ClearB
-				 // 
-				 this->ClearB->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-					 static_cast<System::Byte>(0)));
-				 this->ClearB->Location = System::Drawing::Point(13, 370);
-				 this->ClearB->Name = L"ClearB";
-				 this->ClearB->Size = System::Drawing::Size(96, 42);
-				 this->ClearB->TabIndex = 16;
-				 this->ClearB->Text = L"CLEAR";
-				 this->ClearB->UseVisualStyleBackColor = true;
-				 // 
 				 // RunL
 				 // 
 				 this->RunL->AutoSize = true;
 				 this->RunL->BackColor = System::Drawing::Color::Transparent;
 				 this->RunL->Font = (gcnew System::Drawing::Font(L"Sitka Small", 8.25F, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)),
 					 System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-				 this->RunL->Location = System::Drawing::Point(12, 327);
+				 this->RunL->Location = System::Drawing::Point(10, 339);
 				 this->RunL->Name = L"RunL";
 				 this->RunL->Size = System::Drawing::Size(213, 16);
 				 this->RunL->TabIndex = 17;
@@ -315,17 +318,22 @@ namespace UVSimGUI {
 				 // 
 				 // OutInputTB
 				 // 
+				 this->OutInputTB->Font = (gcnew System::Drawing::Font(L"Consolas", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+					 static_cast<System::Byte>(0)));
 				 this->OutInputTB->Location = System::Drawing::Point(578, 86);
 				 this->OutInputTB->Name = L"OutInputTB";
-				 this->OutInputTB->Size = System::Drawing::Size(87, 20);
+				 this->OutInputTB->Size = System::Drawing::Size(87, 23);
 				 this->OutInputTB->TabIndex = 18;
 				 // 
 				 // OutLabelTB
 				 // 
+				 this->OutLabelTB->BackColor = System::Drawing::SystemColors::Control;
+				 this->OutLabelTB->Font = (gcnew System::Drawing::Font(L"Consolas", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+					 static_cast<System::Byte>(0)));
 				 this->OutLabelTB->Location = System::Drawing::Point(442, 86);
 				 this->OutLabelTB->Name = L"OutLabelTB";
 				 this->OutLabelTB->ReadOnly = true;
-				 this->OutLabelTB->Size = System::Drawing::Size(130, 20);
+				 this->OutLabelTB->Size = System::Drawing::Size(130, 23);
 				 this->OutLabelTB->TabIndex = 19;
 				 // 
 				 // InputB
@@ -344,9 +352,9 @@ namespace UVSimGUI {
 				 // 
 				 this->RunB->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 					 static_cast<System::Byte>(0)));
-				 this->RunB->Location = System::Drawing::Point(133, 368);
+				 this->RunB->Location = System::Drawing::Point(13, 368);
 				 this->RunB->Name = L"RunB";
-				 this->RunB->Size = System::Drawing::Size(96, 42);
+				 this->RunB->Size = System::Drawing::Size(216, 42);
 				 this->RunB->TabIndex = 21;
 				 this->RunB->Text = L"RUN";
 				 this->RunB->UseVisualStyleBackColor = true;
@@ -363,7 +371,6 @@ namespace UVSimGUI {
 				 this->Controls->Add(this->OutLabelTB);
 				 this->Controls->Add(this->OutInputTB);
 				 this->Controls->Add(this->RunL);
-				 this->Controls->Add(this->ClearB);
 				 this->Controls->Add(this->InputTB);
 				 this->Controls->Add(this->InputL);
 				 this->Controls->Add(this->OprndL);
@@ -396,6 +403,7 @@ namespace UVSimGUI {
 	};
 
 	private: System::Void InputB_Click(System::Object^  sender, System::EventArgs^  e) {
+		OutLabelTB->Text = "PRESS RUN AGAIN";
 		myInput = int::Parse(OutInputTB->Text);
 		memory[myALU->getLocation()] = myInput;
 		needInput = false;
@@ -497,12 +505,21 @@ namespace UVSimGUI {
 			this->OpCodTB->Text += myALU->getInstr();
 			this->OprndTB->Text += myALU->getLocation();
 
+			//Prints out memory
+			this->MemoryTB->Text += "---MAIN MEMORY---" + "\r\n" + "\r\n";
 			for (int i = 0; i < MEMSIZE / 10; i++) {
 				for (int j = 0; j < 10; j++) {
-					this->MemoryTB->Text += memory[(i * 10) + j] + " ";
+					if (memory[(i * 10) + j] < 10)
+						this->MemoryTB->Text += " 000" + memory[(i * 10) + j]; //four spaces
+					else if (memory[(i * 10) + j] < 100)
+						this->MemoryTB->Text += " 00" + memory[(i * 10) + j]; //three spaces
+					else if (memory[(i * 10) + j] < 1000)
+						this->MemoryTB->Text += " 0" + memory[(i * 10) + j]; //two spaces
+					else if (memory[(i * 10) + j] < 10000)
+						this->MemoryTB->Text += " " + memory[(i * 10) + j]; //one space
 				}
-				this->MemoryTB->Text += "\t";
-			}//Prints out memory, but is not formated very nice.
+				this->MemoryTB->Text += "\r\n";
+			}
 
 		};
 
