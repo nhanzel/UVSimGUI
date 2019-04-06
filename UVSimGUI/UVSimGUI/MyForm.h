@@ -12,6 +12,11 @@ namespace UVSimGUI {
 	using namespace System::Data;
 	using namespace System::Drawing;
 
+	//memory had to be global to fix the user input problem
+	//(someone can try to make it not global, but please don't break the code lol)
+	const int MEMSIZE = 1000;
+	int memory[MEMSIZE];
+
 	/// <summary>
 	/// Summary for MyForm
 	/// </summary>
@@ -21,10 +26,8 @@ namespace UVSimGUI {
 		MyForm(void)
 		{
 			InitializeComponent();
-			//
 			myALU = new ALU;
 			//TODO: Add the constructor code here
-			//
 		}
 
 	protected:
@@ -79,11 +82,22 @@ namespace UVSimGUI {
 	private:
 		//declare any variables here that are needed
 		/// <summary>
+		//instance for ALU class
 		ALU* myALU;
+
+		//var for user input
 		int myInput = 0;
+		bool needInput = false;
+		bool firstCompile = true;
+
+		//vars for data and memory conversion
 		int numLines = 0;
 		char* recentLine;
 		char* subStr = "0000";
+
+		//variable for running the code
+		int counter = 0;
+
 	private: System::Windows::Forms::Button^  InputB;
 	private: System::Windows::Forms::Button^  RunB;
 			 /// </summary>
@@ -267,6 +281,7 @@ namespace UVSimGUI {
 				 // InputTB
 				 // 
 				 this->InputTB->AcceptsReturn = true;
+				 this->InputTB->AllowDrop = true;
 				 this->InputTB->Location = System::Drawing::Point(13, 97);
 				 this->InputTB->Multiline = true;
 				 this->InputTB->Name = L"InputTB";
@@ -382,108 +397,115 @@ namespace UVSimGUI {
 
 	private: System::Void InputB_Click(System::Object^  sender, System::EventArgs^  e) {
 		myInput = int::Parse(OutInputTB->Text);
+		memory[myALU->getLocation()] = myInput;
+		needInput = false;
 	};
 
 	//This will run when the user presses "RUN"
 	private: System::Void RunB_Click(System::Object^  sender, System::EventArgs^  e) {
-		const int MEMSIZE = 1000;
-		int memory[MEMSIZE] = {};
+		if (firstCompile) {
+			for (int i = 0; i < MEMSIZE; i++) {
+				memory[i] = 0;
+			}
 
-		//put the code into main memory
-		array<String^>^ tempArray = gcnew array<String^>(InputTB->Lines->Length);
-		tempArray = InputTB->Lines;
-		for (int i = 0; i < tempArray->Length; i++) {
-			tempArray[i] = tempArray[i]->Substring(1, 4);
-			memory[i] = int::Parse(tempArray[i]);
+			//put the code into main memory
+			array<String^>^ tempArray = gcnew array<String^>(InputTB->Lines->Length);
+			tempArray = InputTB->Lines;
+			for (int i = 0; i < tempArray->Length; i++) {
+				tempArray[i] = tempArray[i]->Substring(1, 4);
+				memory[i] = int::Parse(tempArray[i]);
+			}
+
+			myALU->setCount(tempArray->Length);
+
+			//information for the compiler
+			numLines = tempArray->Length;
+
+			//ensures the setup information won't happen again
+			firstCompile = false;
 		}
-
-		myALU->setCount(tempArray->Length);
-		//information for the compiler
-		numLines = tempArray->Length;
 
 		//run all of the code
-		int i = 0;
-		while (myALU->getInstr() != 43 && i < myALU->getCount()) {
+		while (myALU->getInstr() != 43 && counter < myALU->getCount() && !needInput) {
 
 			//parse the instruction and the location
-			int a = memory[i];
-			int b = memory[i + 1];
+			int a = memory[counter];
+			int b = memory[counter + 1];
 			myALU->setInstr(a / 100);
-			myALU->setLocation(b);
-			i++;
+			myALU->setLocation(b % 100);
+			counter++;
 			//run through all of the possible instructions
 			
-			if (myALU->getInstr() == 10) {
+			if (myALU->getInstr() == 10) { //read
 				OutLabelTB->Text = "Input an integer:";
-				memory[myALU->getLocation()] = myALU->read();
+				needInput = true;
+				continue;
 			}
-			else if (myALU->getInstr() == 11) {
+			else if (myALU->getInstr() == 11) { //write
 				MemoryTB->AppendText(myALU->write(memory[myALU->getLocation()], myALU->getLocation()));
 			}
-			else if (myALU->getInstr() == 20) {
+			else if (myALU->getInstr() == 20) { //load
 				myALU->setAccu(memory[myALU->getLocation()]);
 			}
-			else if (myALU->getInstr() == 21) {
+			else if (myALU->getInstr() == 21) { //store
 				memory[myALU->getLocation()] = myALU->getAccu();
 			}
-			else if (myALU->getInstr() == 30) {
+			else if (myALU->getInstr() == 30) { //addition
 				myALU->setAccu(myALU->add(myALU->getAccu(), memory[myALU->getLocation()]));
 			}
-			else if (myALU->getInstr() == 31) {
+			else if (myALU->getInstr() == 31) { //subtraction
 				myALU->setAccu(myALU->subtract(myALU->getAccu(), memory[myALU->getLocation()]));
 			}
-			else if (myALU->getInstr() == 32) {
+			else if (myALU->getInstr() == 32) { //multiplication
 				myALU->setAccu(myALU->divide(myALU->getAccu(), memory[myALU->getLocation()]));
 			}
-			else if (myALU->getInstr() == 33) {
+			else if (myALU->getInstr() == 33) { //division
 				myALU->setAccu(myALU->multiply(myALU->getAccu(), memory[myALU->getLocation()]));
 			}
-			else if (myALU->getInstr() == 34) {
+			else if (myALU->getInstr() == 34) { //exponential
 				myALU->setAccu(myALU->exponent(myALU->getAccu(), memory[myALU->getLocation()]));
 			}
-			else if (myALU->getInstr() == 35) {
+			else if (myALU->getInstr() == 35) { //remainder
 				myALU->setAccu(myALU->remainder(myALU->getAccu(), memory[myALU->getLocation()]));
 			}
-			else if (myALU->getInstr() == 40) {
-				i = myALU->getLocation() - 1;
+			else if (myALU->getInstr() == 40) { //branch
+				counter = myALU->getLocation() - 1;
 			}
-			else if (myALU->getInstr() == 41) {
+			else if (myALU->getInstr() == 41) { //branch negative
 				if (myALU->getAccu() < 0)
 				{
-					i = myALU->getLocation() - 1;
+					counter = myALU->getLocation() - 1;
 				}
 			}
-			else if (myALU->getInstr() == 42) {
+			else if (myALU->getInstr() == 42) { //branch zero
 				if (myALU->getAccu() == 0)
 				{
-					i = myALU->getLocation() - 1;
+					counter = myALU->getLocation() - 1;
 				}
 			}
-
-			//halt instruction
-			else if (myALU->getInstr() == 43) {
+			else if (myALU->getInstr() == 43) { //halt instruction
 				break;
 			}
-
-			i++;
-
 		}
 
-		//Prints out all of the output
-		this->AccumTB->Text += myALU->getAccu();
-		this->InRegTB->Text += myALU->getInstr();
-		this->InCouTB->Text += myALU->getCount();
-		this->OpCodTB->Text += myALU->getInstr();
-		this->OprndTB->Text += myALU->getLocation();
+		if (!needInput) {
 
-		for (int i = 0; i < MEMSIZE / 10; i++) {
-			for (int j = 0; j < 10; j++) {
-				this->MemoryTB->Text += memory[(i * 10) + j] + " ";
-			}
-			this->MemoryTB->Text += "\t";
-		}//Prints out memory, but is not formated very nice.
-};
+			//Prints out all of the output
+			this->AccumTB->Text += myALU->getAccu();
+			this->InRegTB->Text += myALU->getInstr();
+			this->InCouTB->Text += myALU->getCount();
+			this->OpCodTB->Text += myALU->getInstr();
+			this->OprndTB->Text += myALU->getLocation();
+
+			for (int i = 0; i < MEMSIZE / 10; i++) {
+				for (int j = 0; j < 10; j++) {
+					this->MemoryTB->Text += memory[(i * 10) + j] + " ";
+				}
+				this->MemoryTB->Text += "\t";
+			}//Prints out memory, but is not formated very nice.
+
+		};
+
+		};
 	};
-
-
 };
