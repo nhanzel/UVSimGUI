@@ -105,7 +105,7 @@ int ALU::read() {
 	return 5;
 }
 
-System::String^ ALU::write(int location, int value) {
+System::String^ ALU::write(int value, int location) {
 	return "The value stored at location " + location + " is " + value;
 }
 

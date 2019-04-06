@@ -22,6 +22,7 @@ namespace UVSimGUI {
 		{
 			InitializeComponent();
 			//
+			myALU = new ALU;
 			//TODO: Add the constructor code here
 			//
 		}
@@ -385,7 +386,8 @@ namespace UVSimGUI {
 
 	//This will run when the user presses "RUN"
 	private: System::Void RunB_Click(System::Object^  sender, System::EventArgs^  e) {
-		int memory[1000] = {};
+		const int MEMSIZE = 1000;
+		int memory[MEMSIZE] = {};
 
 		//put the code into main memory
 		array<String^>^ tempArray = gcnew array<String^>(InputTB->Lines->Length);
@@ -394,7 +396,8 @@ namespace UVSimGUI {
 			tempArray[i] = tempArray[i]->Substring(1, 4);
 			memory[i] = int::Parse(tempArray[i]);
 		}
-		
+
+		myALU->setCount(tempArray->Length);
 		//information for the compiler
 		numLines = tempArray->Length;
 
@@ -404,11 +407,12 @@ namespace UVSimGUI {
 
 			//parse the instruction and the location
 			int a = memory[i];
+			int b = memory[i + 1];
 			myALU->setInstr(a / 100);
-			myALU->setLocation(a % 100);
-
+			myALU->setLocation(b);
+			i++;
 			//run through all of the possible instructions
-			//TODO: Change for two memory locations
+			
 			if (myALU->getInstr() == 10) {
 				OutLabelTB->Text = "Input an integer:";
 				memory[myALU->getLocation()] = myALU->read();
@@ -472,7 +476,12 @@ namespace UVSimGUI {
 		this->OpCodTB->Text += myALU->getInstr();
 		this->OprndTB->Text += myALU->getLocation();
 
-		//TODO print out the memory (Connor)
+		for (int i = 0; i < MEMSIZE / 10; i++) {
+			for (int j = 0; j < 10; j++) {
+				this->MemoryTB->Text += memory[(i * 10) + j] + " ";
+			}
+			this->MemoryTB->Text += "\t";
+		}//Prints out memory, but is not formated very nice.
 };
 	};
 
