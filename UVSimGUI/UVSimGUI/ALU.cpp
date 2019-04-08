@@ -60,13 +60,10 @@ int ALU::exponent(int accumulator, int value) {
 }
 
 int ALU::remainder(int accumulator, int value) {
-	int i = 1;
-	int prod = 0;
-	while (prod <= accumulator) {
-		prod = value * i;
-		i++;
+	if (value == 0) {
+		return false;
 	}
-	return accumulator - (prod - value);
+	return accumulator % value;
 }
 
 int ALU::getInstr() {

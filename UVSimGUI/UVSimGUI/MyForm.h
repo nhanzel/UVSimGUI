@@ -494,6 +494,28 @@ namespace UVSimGUI {
 			else if (myALU->getInstr() == 43) { //halt instruction
 				break;
 			}
+			else if (myALU->getInstr() == 50) { //memdump
+				this->MemoryTB->Text += "---MAIN MEMORY---" + "\r\n" + "\r\n";
+				for (int i = 0; i < MEMSIZE / 10; i++) {
+					for (int j = 0; j < 10; j++) {
+						if (memory[(i * 10) + j] < 10)
+							this->MemoryTB->Text += " 000" + memory[(i * 10) + j]; //four spaces
+						else if (memory[(i * 10) + j] < 100)
+							this->MemoryTB->Text += " 00" + memory[(i * 10) + j]; //three spaces
+						else if (memory[(i * 10) + j] < 1000)
+							this->MemoryTB->Text += " 0" + memory[(i * 10) + j]; //two spaces
+						else if (memory[(i * 10) + j] < 10000)
+							this->MemoryTB->Text += " " + memory[(i * 10) + j]; //one space
+					}
+					this->MemoryTB->Text += "\r\n";
+				}
+			}
+			else if (myALU->getInstr() == 51) { //break
+				break;
+			}
+			else if (myALU->getInstr() == 52) { //continue
+				continue;
+			}
 		}
 
 		if (!needInput) {
