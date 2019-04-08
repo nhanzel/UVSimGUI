@@ -52,16 +52,17 @@ int ALU::divide(int accumulator, int value) {
 }
 
 int ALU::exponent(int accumulator, int value) {
-	int ans = 1;
-	for (int i = 0; i < value; i++) {
-		ans = multiply(ans, accumulator);
+	int result = 1;
+	while (value != 0) {
+		result *= accumulator;
+		--value;
 	}
-	return ans;
+	return result;
 }
 
 int ALU::remainder(int accumulator, int value) {
 	if (value == 0) {
-		return false;
+		return accumulator;
 	}
 	return accumulator % value;
 }

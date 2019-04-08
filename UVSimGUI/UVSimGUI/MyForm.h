@@ -440,8 +440,8 @@ namespace UVSimGUI {
 			int a = memory[counter];
 			int b = memory[counter + 1];
 			myALU->setInstr(a / 100);
-			myALU->setLocation(b % 100);
-			counter++;
+			myALU->setLocation(b);
+			counter += 2;
 			//run through all of the possible instructions
 			
 			if (myALU->getInstr() == 10) { //read
