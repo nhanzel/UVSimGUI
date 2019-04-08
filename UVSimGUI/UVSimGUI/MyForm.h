@@ -477,18 +477,18 @@ namespace UVSimGUI {
 				myALU->setAccu(myALU->remainder(myALU->getAccu(), memory[myALU->getLocation()]));
 			}
 			else if (myALU->getInstr() == 40) { //branch
-				counter = myALU->getLocation() - 1;
+				counter = myALU->getLocation();
 			}
 			else if (myALU->getInstr() == 41) { //branch negative
 				if (myALU->getAccu() < 0)
 				{
-					counter = myALU->getLocation() - 1;
+					counter = myALU->getLocation();
 				}
 			}
 			else if (myALU->getInstr() == 42) { //branch zero
 				if (myALU->getAccu() == 0)
 				{
-					counter = myALU->getLocation() - 1;
+					counter = myALU->getLocation();
 				}
 			}
 			else if (myALU->getInstr() == 43) { //halt instruction
