@@ -100,6 +100,11 @@ namespace UVSimGUI {
 
 	private: System::Windows::Forms::Button^  InputB;
 	private: System::Windows::Forms::Button^  RunB;
+	private: System::Windows::Forms::MenuStrip^  Menu;
+	private: System::Windows::Forms::ToolStripMenuItem^  fileToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  newToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  loadToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  saveToolStripMenuItem;
 			 /// </summary>
 			 System::ComponentModel::Container ^components;
 
@@ -130,6 +135,12 @@ namespace UVSimGUI {
 				 this->OutLabelTB = (gcnew System::Windows::Forms::TextBox());
 				 this->InputB = (gcnew System::Windows::Forms::Button());
 				 this->RunB = (gcnew System::Windows::Forms::Button());
+				 this->Menu = (gcnew System::Windows::Forms::MenuStrip());
+				 this->fileToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+				 this->newToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+				 this->loadToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+				 this->saveToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+				 this->Menu->SuspendLayout();
 				 this->SuspendLayout();
 				 // 
 				 // TitleL
@@ -138,7 +149,7 @@ namespace UVSimGUI {
 				 this->TitleL->BackColor = System::Drawing::Color::Transparent;
 				 this->TitleL->Font = (gcnew System::Drawing::Font(L"Sitka Small", 24, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 					 static_cast<System::Byte>(0)));
-				 this->TitleL->Location = System::Drawing::Point(5, 9);
+				 this->TitleL->Location = System::Drawing::Point(5, 27);
 				 this->TitleL->Name = L"TitleL";
 				 this->TitleL->Size = System::Drawing::Size(135, 48);
 				 this->TitleL->TabIndex = 0;
@@ -360,6 +371,47 @@ namespace UVSimGUI {
 				 this->RunB->UseVisualStyleBackColor = true;
 				 this->RunB->Click += gcnew System::EventHandler(this, &MyForm::RunB_Click);
 				 // 
+				 // Menu
+				 // 
+				 this->Menu->BackColor = System::Drawing::Color::Lime;
+				 this->Menu->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->fileToolStripMenuItem });
+				 this->Menu->Location = System::Drawing::Point(0, 0);
+				 this->Menu->Name = L"Menu";
+				 this->Menu->Size = System::Drawing::Size(877, 24);
+				 this->Menu->TabIndex = 22;
+				 this->Menu->Text = L"Menu";
+				 // 
+				 // fileToolStripMenuItem
+				 // 
+				 this->fileToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {
+					 this->newToolStripMenuItem,
+						 this->loadToolStripMenuItem, this->saveToolStripMenuItem
+				 });
+				 this->fileToolStripMenuItem->Name = L"fileToolStripMenuItem";
+				 this->fileToolStripMenuItem->Size = System::Drawing::Size(37, 20);
+				 this->fileToolStripMenuItem->Text = L"File";
+				 // 
+				 // newToolStripMenuItem
+				 // 
+				 this->newToolStripMenuItem->Name = L"newToolStripMenuItem";
+				 this->newToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+				 this->newToolStripMenuItem->Text = L"New";
+				 this->newToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::newToolStripMenuItem_Click);
+				 // 
+				 // loadToolStripMenuItem
+				 // 
+				 this->loadToolStripMenuItem->Name = L"loadToolStripMenuItem";
+				 this->loadToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+				 this->loadToolStripMenuItem->Text = L"Load";
+				 this->loadToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::loadToolStripMenuItem_Click);
+				 // 
+				 // saveToolStripMenuItem
+				 // 
+				 this->saveToolStripMenuItem->Name = L"saveToolStripMenuItem";
+				 this->saveToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+				 this->saveToolStripMenuItem->Text = L"Save";
+				 this->saveToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::saveToolStripMenuItem_Click);
+				 // 
 				 // MyForm
 				 // 
 				 this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -386,8 +438,12 @@ namespace UVSimGUI {
 				 this->Controls->Add(this->MemoryL);
 				 this->Controls->Add(this->MemoryTB);
 				 this->Controls->Add(this->TitleL);
+				 this->Controls->Add(this->Menu);
+				 this->MainMenuStrip = this->Menu;
 				 this->Name = L"MyForm";
 				 this->Text = L"MyForm";
+				 this->Menu->ResumeLayout(false);
+				 this->Menu->PerformLayout();
 				 this->ResumeLayout(false);
 				 this->PerformLayout();
 
@@ -546,5 +602,19 @@ namespace UVSimGUI {
 		};
 
 		};
+
+	private: System::Void newToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+
 	};
+
+
+	private: System::Void loadToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+
+	};
+
+
+	private: System::Void saveToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+
+	};
+};
 };

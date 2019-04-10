@@ -135,12 +135,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ALU.cpp" />
+    <ClCompile Include="File.cpp" />
     <ClCompile Include="MyForm.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ALU.h">
       <DeploymentContent>true</DeploymentContent>
     </ClInclude>
+    <ClInclude Include="File.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
