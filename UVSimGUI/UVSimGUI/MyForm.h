@@ -560,7 +560,7 @@ namespace UVSimGUI {
 							this->MemoryTB->Text += " 00" + memory[(i * 10) + j]; //three spaces
 						else if (memory[(i * 10) + j] < 1000)
 							this->MemoryTB->Text += " 0" + memory[(i * 10) + j]; //two spaces
-						else if (memory[(i * 10) + j] < 1000000)
+						else if (memory[(i * 10) + j] < 10000)
 							this->MemoryTB->Text += " " + memory[(i * 10) + j]; //one space
 					}
 					this->MemoryTB->Text += "\r\n";
@@ -593,7 +593,7 @@ namespace UVSimGUI {
 						this->MemoryTB->Text += " 00" + memory[(i * 10) + j]; //three spaces
 					else if (memory[(i * 10) + j] < 1000)
 						this->MemoryTB->Text += " 0" + memory[(i * 10) + j]; //two spaces
-					else if (memory[(i * 10) + j] < 1000000)
+					else if (memory[(i * 10) + j] < 10000)
 						this->MemoryTB->Text += " " + memory[(i * 10) + j]; //one space
 				}
 				this->MemoryTB->Text += "\r\n";
