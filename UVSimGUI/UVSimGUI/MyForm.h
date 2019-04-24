@@ -1,7 +1,11 @@
 #pragma once
-#include <string>
 #include <msclr\marshal_cppstd.h>
+#include <string>
+#include <vector>
 #include "ALU.h"
+#include "File.h"
+
+#pragma warning(disable : 4996)
 
 namespace UVSimGUI {
 
@@ -27,6 +31,7 @@ namespace UVSimGUI {
 		{
 			InitializeComponent();
 			myALU = new ALU;
+			myFile = new File;
 			//TODO: Add the constructor code here
 		}
 
@@ -84,6 +89,9 @@ namespace UVSimGUI {
 		/// <summary>
 		//instance for ALU class
 		ALU* myALU;
+		File* myFile;
+
+		msclr::interop::marshal_context context;
 
 		//var for user input
 		int myInput = 0;
@@ -93,7 +101,10 @@ namespace UVSimGUI {
 		//vars for data and memory conversion
 		int numLines = 0;
 		char* recentLine;
-		char* subStr = "0000";
+		char* subStr;
+		bool newFileOption = false;
+		bool loadFileOption = false;
+		bool saveFileOption = false;
 
 		//variable for running the code
 		int counter = 0;
@@ -105,6 +116,9 @@ namespace UVSimGUI {
 	private: System::Windows::Forms::ToolStripMenuItem^  newToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  loadToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  saveToolStripMenuItem;
+	private: System::Windows::Forms::TextBox^  FileLabelTB;
+	private: System::Windows::Forms::TextBox^  FileTB;
+	private: System::Windows::Forms::Button^  FileB;
 			 /// </summary>
 			 System::ComponentModel::Container ^components;
 
@@ -140,6 +154,9 @@ namespace UVSimGUI {
 				 this->newToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 				 this->loadToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 				 this->saveToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+				 this->FileLabelTB = (gcnew System::Windows::Forms::TextBox());
+				 this->FileTB = (gcnew System::Windows::Forms::TextBox());
+				 this->FileB = (gcnew System::Windows::Forms::Button());
 				 this->Menu->SuspendLayout();
 				 this->SuspendLayout();
 				 // 
@@ -394,23 +411,55 @@ namespace UVSimGUI {
 				 // newToolStripMenuItem
 				 // 
 				 this->newToolStripMenuItem->Name = L"newToolStripMenuItem";
-				 this->newToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+				 this->newToolStripMenuItem->Size = System::Drawing::Size(100, 22);
 				 this->newToolStripMenuItem->Text = L"New";
 				 this->newToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::newToolStripMenuItem_Click);
 				 // 
 				 // loadToolStripMenuItem
 				 // 
 				 this->loadToolStripMenuItem->Name = L"loadToolStripMenuItem";
-				 this->loadToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+				 this->loadToolStripMenuItem->Size = System::Drawing::Size(100, 22);
 				 this->loadToolStripMenuItem->Text = L"Load";
 				 this->loadToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::loadToolStripMenuItem_Click);
 				 // 
 				 // saveToolStripMenuItem
 				 // 
 				 this->saveToolStripMenuItem->Name = L"saveToolStripMenuItem";
-				 this->saveToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+				 this->saveToolStripMenuItem->Size = System::Drawing::Size(100, 22);
 				 this->saveToolStripMenuItem->Text = L"Save";
 				 this->saveToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::saveToolStripMenuItem_Click);
+				 // 
+				 // FileLabelTB
+				 // 
+				 this->FileLabelTB->BackColor = System::Drawing::SystemColors::Control;
+				 this->FileLabelTB->Font = (gcnew System::Drawing::Font(L"Consolas", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+					 static_cast<System::Byte>(0)));
+				 this->FileLabelTB->Location = System::Drawing::Point(442, 57);
+				 this->FileLabelTB->Name = L"FileLabelTB";
+				 this->FileLabelTB->ReadOnly = true;
+				 this->FileLabelTB->Size = System::Drawing::Size(130, 23);
+				 this->FileLabelTB->TabIndex = 23;
+				 // 
+				 // FileTB
+				 // 
+				 this->FileTB->Font = (gcnew System::Drawing::Font(L"Consolas", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+					 static_cast<System::Byte>(0)));
+				 this->FileTB->Location = System::Drawing::Point(578, 57);
+				 this->FileTB->Name = L"FileTB";
+				 this->FileTB->Size = System::Drawing::Size(87, 23);
+				 this->FileTB->TabIndex = 24;
+				 // 
+				 // FileB
+				 // 
+				 this->FileB->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+					 static_cast<System::Byte>(0)));
+				 this->FileB->Location = System::Drawing::Point(671, 60);
+				 this->FileB->Name = L"FileB";
+				 this->FileB->Size = System::Drawing::Size(83, 20);
+				 this->FileB->TabIndex = 25;
+				 this->FileB->Text = L"Submit";
+				 this->FileB->UseVisualStyleBackColor = true;
+				 this->FileB->Click += gcnew System::EventHandler(this, &MyForm::FileB_Click);
 				 // 
 				 // MyForm
 				 // 
@@ -418,6 +467,9 @@ namespace UVSimGUI {
 				 this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 				 this->BackColor = System::Drawing::Color::Lime;
 				 this->ClientSize = System::Drawing::Size(877, 419);
+				 this->Controls->Add(this->FileB);
+				 this->Controls->Add(this->FileTB);
+				 this->Controls->Add(this->FileLabelTB);
 				 this->Controls->Add(this->RunB);
 				 this->Controls->Add(this->InputB);
 				 this->Controls->Add(this->OutLabelTB);
@@ -465,7 +517,7 @@ namespace UVSimGUI {
 		needInput = false;
 	};
 
-	//This will run when the user presses "RUN"
+			 //This will run when the user presses "RUN"
 	private: System::Void RunB_Click(System::Object^  sender, System::EventArgs^  e) {
 		if (firstCompile) {
 			for (int i = 0; i < MEMSIZE; i++) {
@@ -499,7 +551,7 @@ namespace UVSimGUI {
 			myALU->setLocation(b);
 			counter += 2;
 			//run through all of the possible instructions
-			
+
 			if (myALU->getInstr() == 10) { //read
 				OutLabelTB->Text = "Input an integer:";
 				needInput = true;
@@ -560,7 +612,7 @@ namespace UVSimGUI {
 							this->MemoryTB->Text += " 00" + memory[(i * 10) + j]; //three spaces
 						else if (memory[(i * 10) + j] < 1000)
 							this->MemoryTB->Text += " 0" + memory[(i * 10) + j]; //two spaces
-						else if (memory[(i * 10) + j] < 1000000)
+						else if (memory[(i * 10) + j] < 10000)
 							this->MemoryTB->Text += " " + memory[(i * 10) + j]; //one space
 					}
 					this->MemoryTB->Text += "\r\n";
@@ -593,7 +645,7 @@ namespace UVSimGUI {
 						this->MemoryTB->Text += " 00" + memory[(i * 10) + j]; //three spaces
 					else if (memory[(i * 10) + j] < 1000)
 						this->MemoryTB->Text += " 0" + memory[(i * 10) + j]; //two spaces
-					else if (memory[(i * 10) + j] < 1000000)
+					else if (memory[(i * 10) + j] < 10000)
 						this->MemoryTB->Text += " " + memory[(i * 10) + j]; //one space
 				}
 				this->MemoryTB->Text += "\r\n";
@@ -601,20 +653,86 @@ namespace UVSimGUI {
 
 		};
 
-		};
+	};
 
 	private: System::Void newToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-
+		FileLabelTB->Text = "Specify Filename:";
+		FileTB->ReadOnly = false;
+		newFileOption = true;
 	};
 
 
 	private: System::Void loadToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-
+		FileLabelTB->Text = "Specify Filename:";
+		FileTB->ReadOnly = false;
+		loadFileOption = true;
 	};
 
 
 	private: System::Void saveToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-
+		FileLabelTB->Text = "Specify Filename:";
+		FileTB->ReadOnly = false;
+		saveFileOption = true;
 	};
-};
+
+
+	private: System::Void FileB_Click(System::Object^  sender, System::EventArgs^  e) {
+		FileLabelTB->Text = "";
+
+		std::string newContent;
+
+		//takes the mangaged TB and converts it to a managed array we can use
+		cli::array<String^>^ tempArray = gcnew cli::array<String^>(InputTB->Lines->Length);
+		tempArray = InputTB->Lines;
+
+		//converting and setting the file path
+		System::String^ example = FileTB->Text;
+		std::string path = context.marshal_as<std::string, System::String^>(example);
+		myFile->setFilePath(path);
+
+
+
+		//Make a new file and clear out InputTB
+		if (newFileOption) {
+			myFile->New();
+			InputTB->Text = "";
+			newFileOption = false;
+
+		}
+		//Get a pointer to the file array and print it out to InputTB
+		else if (loadFileOption) {
+			newContent = myFile->Load();
+			//convert from unmanaged to managed
+			String^ ms = gcnew String(newContent.c_str());
+			InputTB->Text += ms + "\n";
+			loadFileOption = false;
+
+		}
+		//Take the InputTB and save to file
+		else if (saveFileOption) {
+			std::vector<std::string> strArr;
+
+			for (int i = 0; i < tempArray->Length; i++) {
+				System::String^ a = tempArray[i];
+				std::string un = context.marshal_as<std::string, System::String^>(a);
+				strArr.push_back(un);
+			}
+			std::string saveString;
+			for (int i = 0; i < tempArray->Length; i++) {
+				saveString += strArr[i];
+				saveString += "\n";
+			}
+
+			bool saveSuccessful = myFile->Save(saveString);
+
+			if (!saveSuccessful) {
+				MessageBox::Show("There was an error saving your file");
+			}
+			else {
+				MessageBox::Show("Your file was saved successfully");
+			}
+			saveFileOption = false;
+		}
+	};
+	};
 };

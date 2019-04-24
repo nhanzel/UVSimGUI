@@ -5,39 +5,46 @@ File::File() {
 }
 
 void File::New() {
-	//TODO: User specifies the file
+
 }
 
-string File::Load() {
-	string* contents;
+std::string File::Load() {
+	std::string content;
+	std::string contents;
 
-	//TODO: User specifies the file
+	inputData.open(filePath);
 
-	inputData->open(*filePath);
-
-	*inputData >> *contents;
-
-	return *contents;
-}
-
-bool File::Save(string _s, string _f) {
-	if (_f != "") {
-		*filePath = _f;
+	while (!inputData.eof()) {
+		inputData >> content;
+		contents += content;
+		contents += "\r\n";
 	}
 
-	outputData->open(*filePath);
+	inputData.close();
+
+	return contents;
+}
+
+bool File::Save(std::string _s) {
+
+	outputData.open(filePath);
 
 	//checks if the file opened correctly
 	//and checks if the input went smoothly
-	if (outputData->good()) {
-		if (*outputData << _s) {
+	if (outputData.good()) {
+		if (outputData << _s) {
 			return true;
-		} else {
+		}
+		else {
 			return false;
 		}
-	} else {
+	}
+	else {
 		return false;
 	}
+	outputData.close();
+}
 
-	outputData->close();
+void File::setFilePath(std::string _s) {
+	filePath = _s + ".txt";
 }

@@ -1,5 +1,61 @@
 ﻿  ALU.cpp
+  File.cpp
   MyForm.cpp
+c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\msclr\marshal.h(240): error C4996: 'msclr::interop::error_reporting_helper<_To_Type,cli::array<System::String ^,1> ^,false>::marshal_as': This conversion is not supported by the library or the header file needed for this conversion is not included.  Please refer to the documentation on 'How to: Extend the Marshaling Library' for adding your own marshaling method.
+          with
+          [
+              _To_Type=std::string
+          ]
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\msclr\marshal.h(220): note: see declaration of 'msclr::interop::error_reporting_helper<_To_Type,cli::array<System::String ^,1> ^,false>::marshal_as'
+          with
+          [
+              _To_Type=std::string
+          ]
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\msclr\marshal.h(297): note: see reference to function template instantiation '_To_Type msclr::interop::marshal_as<_To_Type,cli::array<System::String ^,1>>(cli::array<System::String ^,1> ^&)' being compiled
+          with
+          [
+              _To_Type=std::string
+          ]
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\msclr\marshal.h(295): note: while compiling class template member function '_To_Type msclr::interop::marshal_context::internal_marshaler<_To_Type,cli::array<System::String ^,1> ^,false>::marshal_as(cli::array<System::String ^,1> ^&,System::Collections::Generic::LinkedList<System::Object ^> %)'
+          with
+          [
+              _To_Type=std::string
+          ]
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\msclr\marshal.h(313): note: see reference to function template instantiation '_To_Type msclr::interop::marshal_context::internal_marshaler<_To_Type,cli::array<System::String ^,1> ^,false>::marshal_as(cli::array<System::String ^,1> ^&,System::Collections::Generic::LinkedList<System::Object ^> %)' being compiled
+          with
+          [
+              _To_Type=std::string
+          ]
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\msclr\marshal.h(313): note: see reference to class template instantiation 'msclr::interop::marshal_context::internal_marshaler<_To_Type,cli::array<System::String ^,1> ^,false>' being compiled
+          with
+          [
+              _To_Type=std::string
+          ]
+  c:\users\natha\onedrive\documents\programming projects\uvsimgui\uvsimgui\uvsimgui\uvsimgui\myform.h(713): note: see reference to function template instantiation '_To_Type msclr::interop::marshal_context::marshal_as<std::string,cli::array<System::String ^,1>>(cli::array<System::String ^,1> ^)' being compiled
+          with
+          [
+              _To_Type=std::string
+          ]
+c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\msclr\marshal.h(222): error C2065: '_This_conversion_is_not_supported': undeclared identifier
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\msclr\marshal.h(221): note: while compiling class template member function '_To_Type msclr::interop::error_reporting_helper<_To_Type,cli::array<System::String ^,1> ^,false>::marshal_as(cli::array<System::String ^,1> ^&)'
+          with
+          [
+              _To_Type=std::string
+          ]
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\msclr\marshal.h(240): note: see reference to function template instantiation '_To_Type msclr::interop::error_reporting_helper<_To_Type,cli::array<System::String ^,1> ^,false>::marshal_as(cli::array<System::String ^,1> ^&)' being compiled
+          with
+          [
+              _To_Type=std::string
+          ]
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\msclr\marshal.h(240): note: see reference to class template instantiation 'msclr::interop::error_reporting_helper<_To_Type,cli::array<System::String ^,1> ^,false>' being compiled
+          with
+          [
+              _To_Type=std::string
+          ]
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\msclr\marshal.h(297): note: see reference to function template instantiation '_To_Type msclr::interop::marshal_as<_To_Type,cli::array<System::String ^,1>>(cli::array<System::String ^,1> ^&)' being compiled
+          with
+          [
+              _To_Type=std::string
+          ]
   Generating Code...
-  .NETFramework,Version=v4.6.1.AssemblyAttributes.cpp
-  UVSimGUI.vcxproj -> C:\Users\natha\OneDrive\Documents\Programming Projects\UVSimGUI\Debug\UVSimGUI.exe
+c:\users\natha\onedrive\documents\programming projects\uvsimgui\uvsimgui\uvsimgui\uvsimgui\file.cpp(16): warning C4700: uninitialized local variable 'contents' used

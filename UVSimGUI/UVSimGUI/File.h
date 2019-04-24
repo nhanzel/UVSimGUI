@@ -1,23 +1,24 @@
-#include <string>
-#include <fstream>
 #pragma once
+#include <string>
+#include <iostream>
+#include <fstream>
 
-using namespace std;
-
-ref class File
+class File
 {
 private:
-	string* filePath;
-	ifstream* inputData;
-	ofstream* outputData;
-
+	std::string filePath;
+	std::ifstream inputData;
+	std::ofstream outputData;
 public:
 	File();
 
 	void New();
 
-	string Load();
+	std::string Load();
 
-	bool Save(string, string);
+	bool Save(std::string);
+
+	void setFilePath(std::string);
+
+	~File();
 };
-
