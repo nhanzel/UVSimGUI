@@ -513,7 +513,14 @@ namespace UVSimGUI {
 	private: System::Void InputB_Click(System::Object^  sender, System::EventArgs^  e) {
 		OutLabelTB->Text = "PRESS RUN AGAIN";
 		myInput = int::Parse(OutInputTB->Text);
-		memory[myALU->getLocation()] = myInput;
+
+		//split
+		int mem1 = myInput / 10000;
+		int mem2 = myInput % 10000;
+		memory[myALU->getLocation()] = mem1;
+		myALU->setLocation(myALU->getLocation() + 1);
+		memory[myALU->getLocation()] = mem2;
+
 		needInput = false;
 	};
 
@@ -558,31 +565,82 @@ namespace UVSimGUI {
 				continue;
 			}
 			else if (myALU->getInstr() == 11) { //write
-				MemoryTB->AppendText(myALU->write(memory[myALU->getLocation()], myALU->getLocation()));
+				int mem1 = memory[myALU->getLocation()];
+				int mem2 = memory[myALU->getLocation() + 1];
+				if (mem1 > 0) {
+					mem2 = (mem1 * 10000) + mem2;
+				}
+				MemoryTB->AppendText(myALU->write(mem2, myALU->getLocation()));
 			}
 			else if (myALU->getInstr() == 20) { //load
-				myALU->setAccu(memory[myALU->getLocation()]);
+				int mem1 = memory[myALU->getLocation()];
+				int mem2 = memory[myALU->getLocation() + 1];
+				if (mem1 > 0) {
+					mem2 = (mem1 * 10000) + mem2;
+				}
+				myALU->setAccu(mem2);
 			}
 			else if (myALU->getInstr() == 21) { //store
-				memory[myALU->getLocation()] = myALU->getAccu();
+				if (myALU->getAccu() > 9999) {
+					//split
+					int ans = myALU->getAccu();
+					int mem1 = ans / 10000;
+					int mem2 = ans % 10000;
+					memory[myALU->getLocation()] = mem1;
+					myALU->setLocation(myALU->getLocation() + 1);
+					memory[myALU->getLocation()] = mem2;
+					// myALU->setLocation(myALU->getLocation() + 1);
+				}
+				else memory[myALU->getLocation() + 1] = myALU->getAccu();
 			}
 			else if (myALU->getInstr() == 30) { //addition
-				myALU->setAccu(myALU->add(myALU->getAccu(), memory[myALU->getLocation()]));
+				//combine
+				int mem1 = memory[myALU->getLocation()];
+				int mem2 = memory[myALU->getLocation() + 1];
+				if (mem1 > 0) {
+					mem2 = (mem1 * 10000) + mem2;
+				}
+				myALU->setAccu(myALU->add(myALU->getAccu(), mem2));
 			}
 			else if (myALU->getInstr() == 31) { //subtraction
-				myALU->setAccu(myALU->subtract(myALU->getAccu(), memory[myALU->getLocation()]));
+				int mem1 = memory[myALU->getLocation()];
+				int mem2 = memory[myALU->getLocation() + 1];
+				if (mem1 > 0) {
+					mem2 = (mem1 * 10000) + mem2;
+				}
+				myALU->setAccu(myALU->subtract(myALU->getAccu(), mem2));
 			}
-			else if (myALU->getInstr() == 32) { //multiplication
-				myALU->setAccu(myALU->divide(myALU->getAccu(), memory[myALU->getLocation()]));
+			else if (myALU->getInstr() == 32) { //division
+				int mem1 = memory[myALU->getLocation()];
+				int mem2 = memory[myALU->getLocation() + 1];
+				if (mem1 > 0) {
+					mem2 = (mem1 * 10000) + mem2;
+				}
+				myALU->setAccu(myALU->divide(myALU->getAccu(), mem2));
 			}
-			else if (myALU->getInstr() == 33) { //division
-				myALU->setAccu(myALU->multiply(myALU->getAccu(), memory[myALU->getLocation()]));
+			else if (myALU->getInstr() == 33) { //multiplication
+				int mem1 = memory[myALU->getLocation()];
+				int mem2 = memory[myALU->getLocation() + 1];
+				if (mem1 > 0) {
+					mem2 = (mem1 * 10000) + mem2;
+				}
+				myALU->setAccu(myALU->multiply(myALU->getAccu(), mem2));
 			}
 			else if (myALU->getInstr() == 34) { //exponential
-				myALU->setAccu(myALU->exponent(myALU->getAccu(), memory[myALU->getLocation()]));
+				int mem1 = memory[myALU->getLocation()];
+				int mem2 = memory[myALU->getLocation() + 1];
+				if (mem1 > 0) {
+					mem2 = (mem1 * 10000) + mem2;
+				}
+				myALU->setAccu(myALU->exponent(myALU->getAccu(), mem2));
 			}
 			else if (myALU->getInstr() == 35) { //remainder
-				myALU->setAccu(myALU->remainder(myALU->getAccu(), memory[myALU->getLocation()]));
+				int mem1 = memory[myALU->getLocation()];
+				int mem2 = memory[myALU->getLocation() + 1];
+				if (mem1 > 0) {
+					mem2 = (mem1 * 10000) + mem2;
+				}
+				myALU->setAccu(myALU->remainder(myALU->getAccu(), mem2));
 			}
 			else if (myALU->getInstr() == 40) { //branch
 				counter = myALU->getLocation();
