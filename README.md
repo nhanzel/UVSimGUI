@@ -26,3 +26,14 @@ If your program requires you to give input, there is a textbox right above the m
 
 Once you put in the input, you must press SUBMIT, then RUN again. If you only press submit, the program will wait for you to start the program up again.
 
+## File I/O
+There are three options for File I/O: New, Load, and Save.
+
+For New, put in the name of the file that you want to make. The InputTB will go blank, but you will still have to load with that same file name (it won't automatically save)
+
+For Load, put in the name of the file that you want to load the input from (make sure it is in the working directory of the project).
+
+For Save, put in the name of the file that you want to save the input to (make sure it is in the working directory of the project).
+
+#### When inputting the filename, ONLY put the name of the file, not the file type (i.e. "newFile", not "newFile.txt")
+
